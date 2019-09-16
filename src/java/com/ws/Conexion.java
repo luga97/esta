@@ -31,7 +31,7 @@ public class Conexion {
             Class.forName("com.mysql.jdbc.Driver");
             // String url= "jdbc:sqlserver://localhost:1433;databaseName=curso2;integratedSecurity=fals";
             String url= "jdbc:mysql://localhost:3306/prueba";
-            conexion= DriverManager.getConnection(url, "root", "");
+            conexion= DriverManager.getConnection(url, "root", "123456");
             //Sentencias = conexion.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             Sentencias = conexion.createStatement();
         } catch (ClassNotFoundException ex) {

@@ -71,19 +71,18 @@ public class GenericResource {
         JSONObject response = new JSONObject();
         try {
             Conexion con = new Conexion();
-            JSONObject jRequest = new JSONObject(request);
-            JSONArray consulta = new JSONArray();
+            JSONArray arrayJSON = new JSONArray();
             Consultar = con.Consultar1();
             while (Consultar.next()){
-            
-                jRequest.put("nombre", Consultar.getString("nombre"));
-                jRequest.put("cedula", Consultar.getString("cedula"));
-                jRequest.put("huella_imagen", Consultar.getString("huella_imagen"));
-                jRequest.put("huella_template_iso19794", Consultar.getString("huella_template_iso19794"));
+                JSONObject objectJSON = new JSONObject();//IMPORTANTE: DEBE IR DENTRO DEL FOR  
+                objectJSON.put("nombre", Consultar.getString("nombre"));
+                objectJSON.put("cedula", Consultar.getString("cedula"));
+                objectJSON.put("huella_imagen", Consultar.getString("huella_imagen"));
+                objectJSON.put("huella_template_iso19794", Consultar.getString("huella_template_iso19794"));
                 
-                consulta.put(jRequest);
+                arrayJSON.put(objectJSON);
             }
-            response.put("cliente", consulta);
+            response.put("usuarios", arrayJSON);
         } catch (JSONException ex) {
             Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
         }
